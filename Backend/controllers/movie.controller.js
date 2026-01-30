@@ -2,7 +2,8 @@ import {
     createMovie as createMovieService,
     getMovieById as getMovieByIdService,
     deleteMovie as deleteMovieService,
-    updateMovieById as updateMovieByIdService
+    updateMovieById as updateMovieByIdService , 
+    fetchMovies as fetchMoviesService
 } from "../services/movie.service.js";
 
 import { successResponseBody, errorResponseBody } from "../utils/responsebody.js";
@@ -87,4 +88,20 @@ const updateMovieById = async (req , res ) => {
     }
 }
 
-export { createMovie, deleteMovie, getMovieById, updateMovieById };
+const getMovies = async(req , res) => {
+    try {
+        const response = await fetchMoviesService(req.query) ; 
+        if(response.err){
+            errorResponseBody.err = err ; 
+            return res.status(500).json(errorResponseBody) ; 
+        }
+        successResponseBody.data = response 
+        return res.status(200).json(successResponseBody) ; 
+    } catch (error) {
+        console.log(error) ; 
+        errorResponseBody.err = error ; 
+        return res.status(500).json(errorResponseBody) ; 
+    }
+}
+
+export { createMovie, deleteMovie, getMovieById, updateMovieById , getMovies };
