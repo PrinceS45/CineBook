@@ -70,6 +70,20 @@ const updateMovieById = async(id , data) => {
         }
 }
 
+const fetchMovies  = async (filter) => {
+    let query = {} ; 
+  if(filter.name) {
+     query.name = filter.name ; 
+  }
+  let movies = await Movie.find(query) ; 
+  if(!movies) {
+    return {
+        err : "Not Able to find the query movies" , 
+        code : 404 
+    }
+  }
+  return movies ;
+}
 
 
-export { createMovie, deleteMovie, getMovieById, updateMovieById };
+export { createMovie, deleteMovie, getMovieById, updateMovieById , fetchMovies };
