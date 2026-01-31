@@ -2,6 +2,8 @@ import express from "express" ;
 import dotenv from "dotenv" ; 
 import mongoose from "mongoose" ; 
 import movieRoute from "./routes/movie.routes.js" ; 
+import threatreRoute from "./routes/threatre.route.js" ; 
+
 
 
 dotenv.config() ; 
@@ -20,7 +22,10 @@ app.get("/health" , (req , res) => {
     })
 })
 
+//invoking movie route
 app.use("/mba/api/v1/movies" , movieRoute) ; 
+// invoking threatre route 
+app.use("/mba/api/v1/threatre" , threatreRoute) ; 
 
 app.listen(process.env.PORT , () => {
     console.log("Server is running on port 5000")  ; 
