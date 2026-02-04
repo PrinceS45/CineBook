@@ -25,7 +25,7 @@ app.get("/health" , (req , res) => {
 //invoking movie route
 app.use("/mba/api/v1/movies" , movieRoute) ; 
 // invoking threatre route 
-app.use("/mba/api/v1/threatre" , threatreRoute) ; 
+app.use("/mba/api/v1/threatres" , threatreRoute) ; 
 
 app.listen(process.env.PORT , () => {
     console.log("Server is running on port 5000")  ; 
