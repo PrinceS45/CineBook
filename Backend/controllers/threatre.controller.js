@@ -56,6 +56,25 @@ const getThreatre = async(req , res) => {
         return res.status(500).json(errorResponseBody) ; 
     }
 }
+/***
+ * @desc get all threatre
+ */
+const getAllThreatre = async(req , res) => {
+    try {
+        const response = await threatreService.getAllThreatre()  ;
+        if(response.err) {
+            errorResponseBody.err = response.err  ; 
+            return res.status(response.code).json(errorResponseBody) ; 
+        }
+        successResponseBody.data = response ; 
+        successResponseBody.message = "Successfully fetched the data of all threatre " ; 
+
+        return res.status(200).json(successResponseBody) ;
+    } catch (error) {
+        errorResponseBody.err = error ; 
+        return res.status(500).json(errorResponseBody) ; 
+    }
+}
 
 
-export {create  , deleteThreatre , getThreatre} ; 
+export {create  , deleteThreatre , getThreatre , getAllThreatre} ; 

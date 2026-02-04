@@ -34,6 +34,7 @@ const deleteThreatre = async (id) => {
 
 // @params id = id is the unique on 
 
+
 const getThreatre = async (id) => {
    try {
     const response = await Threatre.findById(id) ; 
@@ -50,4 +51,26 @@ return response ;
    }
 }
 
-export {createThreatre , deleteThreatre , getThreatre} ; 
+/***
+ * @des get all threatre 
+ * @route /threatre
+ * @args 
+ */
+const getAllThreatre = async () => {
+   try {
+    const response = await Threatre.find({}) ; 
+if(!response) {
+    return {
+     err : "No threatre is found for the given id " , 
+     code : 404 
+    }
+}
+return response ; 
+   } catch (error) {
+     console.log(error) ; 
+     throw error ; 
+   }
+}
+
+
+export {createThreatre , deleteThreatre , getThreatre , getAllThreatre} ; 
