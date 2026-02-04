@@ -16,6 +16,38 @@ const createThreatre = async(data) => {
      throw error ; 
    }
 }
+const deleteThreatre = async (id) => {
+    try {
+        const threatre = await Threatre.findByIdAndDelete(id);
 
+        if (!threatre) {
+            return { err: "Threatre not found", code: 404 };
+        }
+        return { data: threatre };
+    } catch (error) {
+        if (error.name === "CastError") {
+            return { err: "Invalid threatre ID", code: 400 };
+        }
+        throw error;
+    }
+};
 
-export {createThreatre} ; 
+// @params id = id is the unique on 
+
+const getThreatre = async (id) => {
+   try {
+    const response = await Threatre.findById(id) ; 
+if(!response) {
+    return {
+     err : "No threatre is found for the given id " , 
+     code : 404 
+    }
+}
+return response ; 
+   } catch (error) {
+     console.log(error) ; 
+     throw error ; 
+   }
+}
+
+export {createThreatre , deleteThreatre , getThreatre} ; 
