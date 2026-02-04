@@ -10,7 +10,7 @@ const threatreSchema = new mongoose.Schema({
    description : String , 
    city : {
     type : String , 
-    requied : true , 
+    required : true , 
    } , 
    pincode : {
     type : Number , 
